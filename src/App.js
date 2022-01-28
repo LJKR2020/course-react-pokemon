@@ -4,8 +4,9 @@ import axios from 'axios';
 import PokemonCard from './components/PokemonCard';
 
 function App() {
-    const [endpoint, setEndpoint] = useState["https://pokeapi.co/api/v2/pokemon/"]
+    const [endpoint, setEndpoint] = useState("https://pokeapi.co/api/v2/pokemon/")
     const [pokemonData, setPokemonData] = useState([]);
+
 
     useEffect(() => {
         async function fetchData() {
@@ -17,7 +18,6 @@ function App() {
                 console.error(e);
             }
         }
-
         fetchData();
     }, [endpoint])
 
@@ -25,20 +25,19 @@ function App() {
         <>
             <h1>Pokemon</h1>
             <button type='button'
-                    onClick={setEndpoint(pokemonData.previous)}
+                    onClick={() => setEndpoint(pokemonData.previous)}
             >vorige
             </button>
             <button type='button'
-                    onClick={setEndpoint(pokemonData.next)}
+                    onClick={() => setEndpoint(pokemonData.next)}
             >volgende
             </button>
             <article className="card">
-                {pokemonData && pokemonData.results.map( (pokemon) => {
+                {Object.keys(pokemonData).length > 0 && pokemonData.results.map( (pokemon) => {
                     return (<PokemonCard key={pokemon.name} id={pokemon.name}/>)
                 })}
             </article>
         </>
-
     )
 }
 

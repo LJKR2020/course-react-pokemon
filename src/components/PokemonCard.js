@@ -19,7 +19,7 @@ const PokemonCard = ({id}) => {
 
     return (
         <div className="pokemoncard">
-            {singlePokemon && <>
+            {Object.keys(singlePokemon).length > 0 && <>
                 <h2>{singlePokemon.name}</h2>
                 <img src={singlePokemon.sprites.front_default} alt="pokemon-naam"/>
                 <div className="moves">
@@ -31,14 +31,14 @@ const PokemonCard = ({id}) => {
                     <h4>{singlePokemon.weight}</h4>
                 </div>
                 <h4>Abilities:</h4>
-                {singlePokemon.abilities.map((ability) => {
-                    return <li className="abilities">
+                {singlePokemon.abilities.map((ability, index) => {
+                    return <li key={index} className="abilities">
                         {ability.ability.name}
                     </li>
                 })}
                 <h4>Soorten moves: </h4>
-                {singlePokemon.types.map((type) => {
-                    return <li className="abilities">
+                {singlePokemon.types.map((type, index) => {
+                    return <li key={index} className="abilities">
                         {type.type.name}
                     </li>
                 })}
